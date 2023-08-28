@@ -23,13 +23,29 @@ public class Thanos {
         }
 
         Collections.shuffle(heroes);
-
-        
         int halfSize = heroes.size() / 2;
         heroes = heroes.subList(0, halfSize);
 
+       
+        Collections.sort(heroes);
+        System.out.println("Order by name:");
         for (Hero hero : heroes) {
-            System.out.println(hero.getName());
+            System.out.println(hero.getName() + ", " + hero.getAge());
+        }
+
+        System.out.println(); 
+
+
+        Comparator<Hero> ageComparator = new Comparator<Hero>() {
+            @Override
+            public int compare(Hero h1, Hero h2) {
+                return Integer.compare(h2.getAge(), h1.getAge()); 
+            }
+        };
+        Collections.sort(heroes, ageComparator);
+        System.out.println("Order by age:");
+        for (Hero hero : heroes) {
+            System.out.println(hero.getName() + ", " + hero.getAge());
         }
     }
 }
